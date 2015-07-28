@@ -6,8 +6,10 @@
 # EuroSeed, WorldSeeding, Name, Points, Pot, Group,
 #
 BEGIN { FS = ","
-        grp = "A";
+        grp = "D";
 	sum = 0;
+	avgwcseed = 0;
+	avgeuroseed = 0;
 	n=0;
 	potnum = 0;
 	potsum = 0;
@@ -22,10 +24,15 @@ BEGIN { FS = ","
         	printf "%s\t%s\t%s\t %s\t%s\t%s\t%s\t%d\n" , NR, $1, $2, $3, $4, $5, $6, potpos;
 		++n;
 		potsum = potsum + potpos;
+		avgeuroseed = avgeuroseed + $1;
+		avgwcseed = avgwcseed + $2;
 };
 }
 END {
-        printf "\nTotal Group Score  %d\n\n", sum;
+        printf "\nGroup %s No. of teams  %d", grp, n;
+        printf "\nTotal Group Score  %d", sum;
+        printf "\nAverage Euro Seed  %d", avgeuroseed/n;
+        printf "\nAverage FIFA  Seed  %d", avgwcseed/n;
         printf "\nTotal Group Pot Score  %d\n\n", potsum;
 }
 
