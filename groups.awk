@@ -30,6 +30,7 @@ BEGIN { FS = ","
 }
 END {
         printf "\nGroup %s No. of teams  %d", grp, n;
+	printf "\n\n Analysis of Group";
         printf "\nTotal Group Score  %d", sum;
         printf "\nAverage Euro Seed  %d", avgeuroseed/n;
         printf "\nAverage FIFA  Seed  %d", avgwcseed/n;
