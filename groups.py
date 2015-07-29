@@ -73,12 +73,12 @@ def analyseGroups(dataSet, grp):
 	    points  = points + int(record[POINTS])
 	    euroavg = euroavg + int(record[EURORANK])
 	    fifaavg = fifaavg + int(record[FIFARANK])
-    print "There are %d teams in the group" % teams
-    print "There total %d points of the group" % points
+    print "Teams \t \t\t%d" % teams
+    print "FIFA Points\t\t%d" % points
     euroavg = euroavg/teams
     fifaavg = fifaavg/teams
-    print "There avg European Ranking of the group is %d" % euroavg 
-    print "There avg World Ranking of the group is %d" % fifaavg
+    print "Avg. European Ranking \t %d" % euroavg 
+    print "Avg. World Ranking \t %d" % fifaavg
 
     anSet = dataSet
     return anSet

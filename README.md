@@ -5,4 +5,5 @@ A simple awk program to read in the seedings and calculate the net world ranking
 + Read in the group value?
 + Loop round each group i.e. Array/Set {A,C,D,E,F,G,H,I}
 + Evaluate a higher score for a higher draw in higher pots (i.e. seed 1 in pot 1is worse to get than seed 1 in pot 3 ) 
-
++ Python Version
++ Graph bar +/-
