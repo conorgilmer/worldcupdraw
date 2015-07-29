@@ -18,6 +18,12 @@ POINTS    = "Points"
 POT       = "Pot"
 GROUP     = "Group"
 
+# Report
+TEAMS      = "Teams"
+TPOINTS    = "Total Points"
+AVGEU      = "Avg Euro Rank"
+AVGWC      = "Avg World Rank"
+
 ###############################################################################
 # 1. Create a seedings set
 # - Read in file
@@ -58,7 +64,7 @@ def createSeedingsSet(filename):
 ###############################################################################
 def analyseGroups(dataSet, grp):
     print "\nAnalyse Group " + grp 
-    anSet   = []
+    outputSet   = []
     points  = 0
     euroavg = 0
     fifaavg = 0
@@ -68,7 +74,8 @@ def analyseGroups(dataSet, grp):
         record = {}
 	record = line
 	if record[GROUP] == grp:
-	    print record[COUNTRY]
+	    potpos = int(record[EURORANK]) - (9 * teams)
+	    print "%s %d" % (record[COUNTRY],  potpos)
 	    teams   = teams + 1
 	    points  = points + int(record[POINTS])
 	    euroavg = euroavg + int(record[EURORANK])
@@ -80,8 +87,14 @@ def analyseGroups(dataSet, grp):
     print "Avg. European Ranking \t %d" % euroavg 
     print "Avg. World Ranking \t %d" % fifaavg
 
-    anSet = dataSet
-    return anSet
+    outputRecord = {}
+    outputRecord[GROUP]   = grp
+    outputRecord[TEAMS]   = teams
+    outputRecord[TPOINTS]  = points
+    outputRecord[AVGEU]   = euroavg
+    outputRecord[AVGWC]   = fifaavg
+    outputSet.append(outputRecord)
+    return outputSet
 
 
 ###############################################################################
@@ -91,7 +104,8 @@ def analyseGroups(dataSet, grp):
 def generateReport(filename, dataSet):
 
     print "Generating Report" 
-
+    print dataSet
+    print "End of Report Generator"
 
 ###############################################################################
 # main - starts the program
@@ -112,7 +126,7 @@ def main():
     print "Calculate Group Toughness"    
     # call analyseGroups(seedingsSet);
     for gp in groups:
-        reportSet = analyseGroups(seedingsSet, gp);
+        reportSet.append(analyseGroups(seedingsSet, gp))
     print "Done Analysing Group.\n"
 
     # Write Report
