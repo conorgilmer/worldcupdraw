@@ -109,15 +109,19 @@ def generateReport(filename, dataSet):
     print "Generating Report" 
 
     fout = open(filename,'w')
-    fout.write("World Cup Qualifying Draw\n");
-    fout.write(GROUP + "\t" + TEAMS + "\t"+ TPOINTS+"\t"+AVGEU+ "\t"+ AVGWC+"\n")
+    title = "World Cup Qualifying Draw";
+    fout.write(title + "\n");
+    headings = GROUP + "\t" + TEAMS + "\t"+ TPOINTS+"\t"+AVGEU+ "\t"+ AVGWC
+    fout.write(headings + "\n")
+    print title
+    print headings
     for line in dataSet:
         record = {}
 	record = line
-	print record
-	strg = str(record['Group']) + "\t" + str(record['Teams']) +"\t"+ str(record[TPOINTS])+ "\t\t"+str(record[AVGEU])+ "\t\t" + str(record[AVGWC])+ "\n" 
-        fout.write(strg)
-
+	#print record
+	strg = str(record['Group']) + "\t" + str(record['Teams']) +"\t"+ str(record[TPOINTS])+ "\t\t"+str(record[AVGEU])+ "\t\t" + str(record[AVGWC])
+        fout.write(strg + "\n")
+	print strg
     fout.close()
 
     print "End of Report Generator"
