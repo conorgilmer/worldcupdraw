@@ -61,15 +61,17 @@ def createSeedingsSet(filename):
 
 ###############################################################################
 # 2. analyseGroups
+# - calculate points sum, avg rankings
+# - save stats to set and return
 ###############################################################################
 def analyseGroups(dataSet, grp):
     print "\nAnalyse Group " + grp 
     outputSet   = []
-    points  = 0
-    euroavg = 0
-    fifaavg = 0
-    teams   = 0
-#    print dataSet
+    points      = 0
+    euroavg     = 0
+    fifaavg     = 0
+    teams       = 0
+    # print dataSet
     for line in dataSet:
         record = {}
 	record = line
@@ -86,7 +88,7 @@ def analyseGroups(dataSet, grp):
     fifaavg = fifaavg/teams
     print "Avg. European Ranking \t %d" % euroavg 
     print "Avg. World Ranking \t %d" % fifaavg
-
+    # save group stats to data set
     outputRecord = {}
     outputRecord[GROUP]   = grp
     outputRecord[TEAMS]   = teams
@@ -94,17 +96,30 @@ def analyseGroups(dataSet, grp):
     outputRecord[AVGEU]   = euroavg
     outputRecord[AVGWC]   = fifaavg
     outputSet.append(outputRecord)
-    return outputSet
+    return outputRecord
 
 
 ###############################################################################
 # 3. Generate Report
-# 
+# - print report
+# - write report to file 
 ###############################################################################
 def generateReport(filename, dataSet):
 
     print "Generating Report" 
-    print dataSet
+
+    fout = open(filename,'w')
+    fout.write("World Cup Qualifying Draw\n");
+    fout.write(GROUP + "\t" + TEAMS + "\t"+ TPOINTS+"\t"+AVGEU+ "\t"+ AVGWC+"\n")
+    for line in dataSet:
+        record = {}
+	record = line
+	print record
+	strg = str(record['Group']) + "\t" + str(record['Teams']) +"\t"+ str(record[TPOINTS])+ "\t\t"+str(record[AVGEU])+ "\t\t" + str(record[AVGWC])+ "\n" 
+        fout.write(strg)
+
+    fout.close()
+
     print "End of Report Generator"
 
 ###############################################################################
