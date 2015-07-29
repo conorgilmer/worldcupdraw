@@ -57,9 +57,14 @@ def createSeedingsSet(filename):
 # 2. analyseGroups
 ###############################################################################
 def analyseGroups(dataSet, grp):
-    print "Analyse Group " + grp 
+    print "\nAnalyse Group " + grp 
     anSet = []
-    print dataSet
+#    print dataSet
+    for line in dataSet:
+        record = {}
+	record = line
+	if record[GROUP] == grp:
+	    print record[COUNTRY]
     anSet = dataSet
     return anSet
 
