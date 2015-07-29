@@ -126,7 +126,7 @@ def generateReport(filename, dataSet):
         record = {}
 	record = line
 	#print record
-	strg = str(record['Group']) + "\t" + str(record['Teams']) +"\t"+ str(record[TPOINTS])+ "\t\t"+str(record[AVGEU])+ "\t\t" + str(record[AVGWC])
+	strg = str(record[GROUP]) + "\t" + str(record[TEAMS]) +"\t"+ str(record[TPOINTS])+ "\t\t"+str(record[AVGEU])+ "\t\t" + str(record[AVGWC])
         fout.write(strg + "\n")
 	print strg
     fout.close()
