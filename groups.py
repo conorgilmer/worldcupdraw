@@ -1,9 +1,15 @@
 
 ###############################################################################
+# groups.py
+# 
+# by Conor Gilmer
+# 
+# Calcualte the "toughness" of the groups based on seedings and points  
+# 
 # Tasks
-# 1 - Create a seedings set
+# 1 - Create a seedings set from seedings csv file
 # 2 - Anlayse Data
-# 3 - Create Report
+# 3 - Create Report/Write to file
 ###############################################################################
 
 ###############################################################################
@@ -11,6 +17,7 @@
 # - these are the fields in the data file
 ###############################################################################
 
+# Input File Headings 
 EURORANK  = "European Ranking"
 FIFARANK  = "World Ranking"
 COUNTRY   = "Country"
@@ -18,7 +25,7 @@ POINTS    = "Points"
 POT       = "Pot"
 GROUP     = "Group"
 
-# Report
+# Report Headings
 TEAMS      = "Teams"
 TPOINTS    = "Total Points"
 AVGEU      = "Avg Euro Rank"
@@ -144,6 +151,7 @@ def main():
     # Analyse Data 
     print "Calculate Group Toughness"    
     # call analyseGroups(seedingsSet);
+    # for each group and append to set
     for gp in groups:
         reportSet.append(analyseGroups(seedingsSet, gp))
     print "Done Analysing Group.\n"
@@ -157,4 +165,7 @@ def main():
 
     print "Program finished."
     
+    
+
+# call main function
 main()
