@@ -58,13 +58,28 @@ def createSeedingsSet(filename):
 ###############################################################################
 def analyseGroups(dataSet, grp):
     print "\nAnalyse Group " + grp 
-    anSet = []
+    anSet   = []
+    points  = 0
+    euroavg = 0
+    fifaavg = 0
+    teams   = 0
 #    print dataSet
     for line in dataSet:
         record = {}
 	record = line
 	if record[GROUP] == grp:
 	    print record[COUNTRY]
+	    teams   = teams + 1
+	    points  = points + int(record[POINTS])
+	    euroavg = euroavg + int(record[EURORANK])
+	    fifaavg = fifaavg + int(record[FIFARANK])
+    print "There are %d teams in the group" % teams
+    print "There total %d points of the group" % points
+    euroavg = euroavg/teams
+    fifaavg = fifaavg/teams
+    print "There avg European Ranking of the group is %d" % euroavg 
+    print "There avg World Ranking of the group is %d" % fifaavg
+
     anSet = dataSet
     return anSet
 
