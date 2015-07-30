@@ -30,6 +30,7 @@ TEAMS      = "Teams"
 TPOINTS    = "Total Points"
 AVGEU      = "Avg Euro Rank"
 AVGWC      = "Avg World Rank"
+AVGPP      = "Avg Pot Position"
 
 ###############################################################################
 # 1. Create a seedings set
@@ -73,11 +74,11 @@ def createSeedingsSet(filename):
 ###############################################################################
 def analyseGroups(dataSet, grp):
     print "\nAnalyse Group " + grp 
-    outputSet   = []
     points      = 0
-    euroavg     = 0
-    fifaavg     = 0
+    euroavg     = 0.0
+    fifaavg     = 0.0
     teams       = 0
+    potposavg   = 0.0
     # print dataSet
     for line in dataSet:
         record = {}
@@ -89,20 +90,23 @@ def analyseGroups(dataSet, grp):
 	    points  = points + int(record[POINTS])
 	    euroavg = euroavg + int(record[EURORANK])
 	    fifaavg = fifaavg + int(record[FIFARANK])
+	    potposavg = potposavg + potpos
     print "Teams \t \t\t%d" % teams
     print "FIFA Points\t\t%d" % points
     euroavg = euroavg/teams
     fifaavg = fifaavg/teams
-    print "Avg. European Ranking \t %d" % euroavg 
-    print "Avg. World Ranking \t %d" % fifaavg
-    # save group stats to data set
-    outputRecord = {}
+    potposavg = potposavg/teams
+    print "Avg. Euro Ranking  \t %.2f" % euroavg 
+    print "Avg. World Ranking \t %.2f" % fifaavg
+    print "Avg. Pot Position  \t %.2f" % potposavg
+    # save group stats record
+    outputRecord          = {}
     outputRecord[GROUP]   = grp
     outputRecord[TEAMS]   = teams
-    outputRecord[TPOINTS]  = points
+    outputRecord[TPOINTS] = points
     outputRecord[AVGEU]   = euroavg
     outputRecord[AVGWC]   = fifaavg
-    outputSet.append(outputRecord)
+    outputRecord[AVGPP]   = potposavg
     return outputRecord
 
 
@@ -118,7 +122,7 @@ def generateReport(filename, dataSet):
     fout = open(filename,'w')
     title = "World Cup Qualifying Draw";
     fout.write(title + "\n");
-    headings = GROUP + "\t" + TEAMS + "\t"+ TPOINTS+"\t"+AVGEU+ "\t"+ AVGWC
+    headings = GROUP + "\t" + TEAMS + "\t"+ TPOINTS+"\t"+AVGEU+ "\t"+ AVGWC + "\t" + AVGPP
     fout.write(headings + "\n")
     print title
     print headings
@@ -126,7 +130,7 @@ def generateReport(filename, dataSet):
         record = {}
 	record = line
 	#print record
-	strg = str(record[GROUP]) + "\t" + str(record[TEAMS]) +"\t"+ str(record[TPOINTS])+ "\t\t"+str(record[AVGEU])+ "\t\t" + str(record[AVGWC])
+	strg = str(record[GROUP]) + "\t" + str(record[TEAMS]) +"\t"+ str(record[TPOINTS])+ "\t\t"+str(record[AVGEU])+ "\t\t" + str(record[AVGWC]) + "\t" + str(record[AVGPP])
         fout.write(strg + "\n")
 	print strg
     fout.close()
@@ -140,12 +144,12 @@ def main():
 
     # Read in Data
     print "Read in seedings."
-    seedingsSet = []
-    reportSet = []
-    groups = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']
+    seedingsSet  = []
+    reportSet    = []
+    groups       = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']
     seedingsFile = "seedings.csv"
-    reportFile = "output.rep"
-    seedingsSet = createSeedingsSet(seedingsFile)
+    reportFile   = "output.rep"
+    seedingsSet  = createSeedingsSet(seedingsFile)
     print "Seedings read in.\n"
 
     # Analyse Data 
