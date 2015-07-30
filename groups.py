@@ -11,7 +11,7 @@
 # 2 - Anlayse Data
 # 3 - Create Report/Write to file
 ###############################################################################
-
+import decimal
 ###############################################################################
 # CONSTANTS
 # - these are the fields in the data file
@@ -31,6 +31,11 @@ TPOINTS    = "Total Points"
 AVGEU      = "Avg Euro Rank"
 AVGWC      = "Avg World Rank"
 AVGPP      = "Avg Pot Position"
+
+def roundToTwo(num):
+    number = 0.0
+    number = round(num,2)
+    return str(number)
 
 ###############################################################################
 # 1. Create a seedings set
@@ -130,7 +135,7 @@ def generateReport(filename, dataSet):
         record = {}
 	record = line
 	#print record
-	strg = str(record[GROUP]) + "\t" + str(record[TEAMS]) +"\t"+ str(record[TPOINTS])+ "\t\t"+str(record[AVGEU])+ "\t\t" + str(record[AVGWC]) + "\t" + str(record[AVGPP])
+	strg = str(record[GROUP]) + "\t" + str(record[TEAMS]) +"\t"+ str(record[TPOINTS])+ "\t\t"+roundToTwo(record[AVGEU])+ "\t\t" + roundToTwo(record[AVGWC]) + "\t" + roundToTwo(record[AVGPP])
         fout.write(strg + "\n")
 	print strg
     fout.close()
