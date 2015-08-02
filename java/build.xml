@@ -14,15 +14,15 @@ i<!-- build.xml file  -->
 <!--  make jar file from compiled classes -->
 <target name="jar">
 <mkdir dir="build/jar"/>
-<jar destfile="build/jar/Groups.jar" basedir="build/classes">
+<jar destfile="build/jar/Group.Analysis.jar" basedir="build/classes">
 <manifest>
-<attribute name="Main-Class" value="groups.Groups"/>
+<attribute name="Main-Class" value="groups.GroupAnalysis"/>
 </manifest>
 </jar>
 </target>
 <!--  run execute jar file   -->
 <target name="run">
-<java jar="build/jar/Groups.jar" fork="true"/>
+<java jar="build/jar/GroupAnalysis.jar" fork="true"/>
 </target>
 <!--  run all build routines  -->
 <target name="all" depends="clean">
