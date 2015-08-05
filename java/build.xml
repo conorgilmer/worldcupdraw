@@ -1,4 +1,4 @@
-i<!-- build.xml file  -->
+<!-- build.xml file  -->
 <!--  Conor Gilmer(cgilmer@tinet.ie)  -->
 <project name="basic build file for ANT" default="all">
 <!-- Initialize/ Clean up directory for build  -->
