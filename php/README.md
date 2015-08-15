@@ -6,3 +6,9 @@ Use PHP internal server
  php -S localhost:8880 
 (Control C to end)
 
+
+#Todo
+* add array selecting colours
+* add left right bar depending on middle seed
+* add combined page
+
