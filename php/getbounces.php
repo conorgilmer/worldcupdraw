@@ -13,7 +13,7 @@ while($row=fgets($data)){
     //do something with it
     $lst = explode(",", $row);
         if ($lst[5]== $group){
-	$pos = ($lst[0] - (9 * $col)) - 4.5; 
+	$pos = 4.5 - ($lst[0] - (9 * $col)); 
       echo "{\"c\":[{\"v\":\"" . $lst[2] . "\",\"f\":null},{\"v\":" . $pos . ",\"f\":null},{\"v\":\"".$colours[$col]."\",\"f\":null} ]},";
 	$col++;
     } else {
