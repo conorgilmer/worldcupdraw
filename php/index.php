@@ -21,7 +21,7 @@
       var bounce_data = new google.visualization.DataTable(jsonBounceData);
       // Instantiate and draw our chart, passing in some options.
       var bounce_bar_chart = new google.visualization.BarChart(document.getElementById('bounce_bar_div'));
-      bounce_bar_chart.draw(bounce_data, {title: 'Draw Pot Position', bars: 'horizontal',  width: 500, height: 340, legend: { position: 'none' },});
+      bounce_bar_chart.draw(bounce_data, {title: 'Draw Pot Position', bars: 'horizontal',  width: 750, height: 510, legend: { position: 'none' },});
 
 
     }
@@ -37,7 +37,7 @@
 
       <!-- Example row of columns -->
       <div class="row">
-        <div class="col-lg-9">
+        <div class="col-lg-3">
  <h2>European Groups - World Cup Qualifying</h2>
 
   <form>
