@@ -7,8 +7,10 @@ Use PHP internal server
 (Control C to end)
 
 
-#Todo
+#Done
 * add array selecting colours
 * add left right bar depending on middle seed
-* add combined page
 
+#Todo
+* add combined page
+* bar chart rank groups
